@@ -2,12 +2,12 @@ import { useAnimate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 // NOTE: Change this date to whatever date you want to countdown to :)
-const COUNTDOWN_FROM = "2024-07-10";
+const COUNTDOWN_FROM = "";
 
-const SECOND = 1000;
-const MINUTE = SECOND * 60;
-const HOUR = MINUTE * 60;
-const DAY = HOUR * 24;
+const SECOND = "??";
+const MINUTE = "??";
+const HOUR = "??";
+const DAY = "??";
 
 type Units = "Day" | "Hour" | "Minute" | "Second";
 
@@ -55,7 +55,7 @@ const useTimer = (unit: Units) => {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const timeRef = useRef(0);
 
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState("??");
 
   useEffect(() => {
     intervalRef.current = setInterval(handleCountdown, 1000);
@@ -68,19 +68,19 @@ const useTimer = (unit: Units) => {
     const now = new Date();
     const distance = +end - +now;
 
-    let newTime = 0;
+    let newTime = "??";
 
-    if (unit === "Day") {
-      newTime = Math.floor(distance / DAY);
-    } else if (unit === "Hour") {
-      newTime = Math.floor((distance % DAY) / HOUR);
-    } else if (unit === "Minute") {
-      newTime = Math.floor((distance % HOUR) / MINUTE);
-    } else {
-      newTime = Math.floor((distance % MINUTE) / SECOND);
-    }
+    // if (unit === "Day") {
+    //   newTime = Math.floor(distance / DAY);
+    // } else if (unit === "Hour") {
+    //   newTime = Math.floor((distance % DAY) / HOUR);
+    // } else if (unit === "Minute") {
+    //   newTime = Math.floor((distance % HOUR) / MINUTE);
+    // } else {
+    //   newTime = Math.floor((distance % MINUTE) / SECOND);
+    // }
 
-    if (newTime !== timeRef.current) {
+    if (newTime !== "0") {
       // Exit animation
       await animate(
         ref.current,
@@ -88,7 +88,7 @@ const useTimer = (unit: Units) => {
         { duration: 0.35 }
       );
 
-      timeRef.current = newTime;
+      // timeRef.current = newTime;
       setTime(newTime);
 
       // Enter animation
